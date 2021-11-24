@@ -62,4 +62,9 @@ XData BPLError
 </diagram>
 }
 
+Storage Default
+{
+<Type>%Storage.Persistent</Type>
+}
+
 }

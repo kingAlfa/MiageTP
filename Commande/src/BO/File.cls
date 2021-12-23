@@ -9,20 +9,10 @@ Parameter INVOCATION = "Queue";
 
 Method voitureFilePush(pRequest As msg.voitureFilePushDmde, pResponse As msg.voitureFilePushRpse) As %Status
 {
-    set pResponse = ##class(msg.pushVoitureFileRpse).%New()
+    set stream = ##class(%Library.FileBinaryStream).%New()
+    set str = stream.Write(pRequest.voiture.marque_pRequest.voiture.modele_pRequest.voiture.categorie_pRequest.voiture.plaque_pRequest.voiture.couleur_pRequest.voiture.nbPlaces)
+    set stat = ..Adapter.PutStream("pushVoiture.txt",stream)
 
-    set file = ##class(%Library.FileBinaryStream).%New()
-
-    do file.Write(pRequest.voiture.marque_";"_pRequest.voiture.modele_";"_pRequest.voiture.categorie_";"_pRequest.voiture.plaque_";"_pRequest.voiture.couleur_";"_pRequest.voiture.nbPlaces)
-
-    set tsc = ..Adapter.PutStream("fichierVoiture"_$TR($TR($ZDT($ZDTH($ZTS,-3),3,9),":/-","")," ","_")_".csv",file)
-    
-    if tsc {
-        set pResponse.codeRetour = "OK"
-    }
-    else{
-        set pResponse.codeRetour = "KO"
-    }
     Quit $$$OK
 }
 

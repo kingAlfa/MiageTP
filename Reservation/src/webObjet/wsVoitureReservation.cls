@@ -1,12 +1,13 @@
 Class webObjet.wsVoitureReservation Extends (%SerialObject, %XML.Adaptor, %JSON.Adaptor)
 {
-   Property categorie As %String;
 
-    Property dateDebut As %TimeStamp;
+Property categorie As %String;
 
-    Property dateFin As %TimeStamp;
+Property dateDebut As %TimeStamp;
 
-    Storage Default
+Property dateFin As %TimeStamp;
+
+Storage Default
 {
 <Data name="wsVoitureReservationState">
 <Value name="1">
@@ -23,4 +24,5 @@ Class webObjet.wsVoitureReservation Extends (%SerialObject, %XML.Adaptor, %JSON.
 <StreamLocation>^webObjet.wsVoitureReservationS</StreamLocation>
 <Type>%Storage.Serial</Type>
 }
+
 }
